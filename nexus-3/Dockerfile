@@ -2,7 +2,7 @@ FROM xqdocker/ubuntu-openjdk:8
 MAINTAINER Xiaoqi Cao <thomascxq@gmail.com>
 
 # Configure nexus variable
-ENV NEXUS_VERSION=3.3.1-01
+ENV NEXUS_VERSION=3.3.1-01 \
     NEXUS_HOME=/opt/sonatype/nexus \
     NEXUS_DATA=/nexus-data \
     SONATYPE_WORK=/opt/sonatype/sonatype-work
@@ -21,7 +21,7 @@ RUN mkdir -p ${NEXUS_HOME} \
     | tar x -C ${NEXUS_HOME} --strip-components=1 nexus-${NEXUS_VERSION}
 
 RUN mkdir -p ${NEXUS_DATA}/etc ${NEXUS_DATA}/log ${NEXUS_DATA}/tmp ${SONATYPE_WORK} \
-    && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
+    && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3
 
 VOLUME ${NEXUS_DATA}
 
